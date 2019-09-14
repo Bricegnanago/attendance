@@ -1,7 +1,7 @@
 <?php
 
 //attendance.php
-
+// L'action de marque present ou absent un étudiant
 include('header.php');
 
 ?>
@@ -10,30 +10,30 @@ include('header.php');
   <div class="card">
   	<div class="card-header">
       <div class="row">
-        <div class="col-md-9">Attendance List</div>
+        <div class="col-md-9">Liste de présence</div>
         <div class="col-md-3" align="right">
-          <button type="button" id="chart_button" class="btn btn-primary btn-sm">Chart</button>
-          <button type="button" id="report_button" class="btn btn-danger btn-sm">Report</button>
+          <button type="button" id="chart_button" class="btn btn-primary btn-sm">Graphique</button>
+          <button type="button" id="report_button" class="btn btn-danger btn-sm">Rapport</button>
         </div>
       </div>
     </div>
   	<div class="card-body">
-  		<div class="table-responsive">
-        <table class="table table-striped table-bordered" id="attendance_table">
-          <thead>
-            <tr>
-              <th>Student Name</th>
-              <th>Roll Number</th>
-              <th>Grade</th>
-              <th>Attendance Status</th>
-              <th>Attendance Date</th>
-              <th>Teacher</th>
-            </tr>
-          </thead>
-          <tbody>
+		<div class="table-responsive">
+			<table class="table table-striped table-bordered" id="attendance_table">
+			  <thead>
+			    <tr>
+			      <th>Nom Etudiant</th>
+			      <th>Roll Number</th> //à supprimer
+			      <th>Classe</th>//Classe
+			      <th>Statut de présence</th>
+			      <th>Date de présence</th>
+			      <th>Professeur</th>
+			    </tr>
+			  </thead>
+			  <tbody>
 
-          </tbody>
-        </table>
+			  </tbody>
+			</table>
   		</div>
   	</div>
   </div>
@@ -58,7 +58,7 @@ include('header.php');
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Make Report</h4>
+        <h4 class="modal-title">Créer un Rapport</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -85,8 +85,8 @@ include('header.php');
       </div>
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" name="create_report" id="create_report" class="btn btn-success btn-sm">Create Report</button>
-        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        <button type="button" name="create_report" id="create_report" class="btn btn-success btn-sm">Créer un Rapport</button>
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Fermer</button>
       </div>
 
     </div>
@@ -99,7 +99,7 @@ include('header.php');
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Create Grade Attandance Chart</h4>
+        <h4 class="modal-title">Créer un tableau de présence</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -107,7 +107,7 @@ include('header.php');
       <div class="modal-body">
         <div class="form-group">
           <select name="chart_grade_id" id="chart_grade_id" class="form-control">
-            <option value="">Select Grade</option>
+            <option value="">Sélectionnez une Classe</option>
             <?php
             echo load_grade_list($connect);
             ?>
@@ -147,7 +147,7 @@ $(document).ready(function(){
 
   $('.input-daterange').datepicker({
     todayBtn: "linked",
-    format: "yyyy-mm-dd",
+    format: "yyyy-mm-dd", // dd-mm-yyyy
     autoclose: true,
     container: '#formModal modal-body'
   });
@@ -164,7 +164,7 @@ $(document).ready(function(){
 
     if(grade_id == '')
     {
-      $('#error_grade_id').text('Grade is Required');
+      $('#error_grade_id').text('La Classe est requise');
       error++;
     }
     else
@@ -174,7 +174,7 @@ $(document).ready(function(){
 
     if(from_date == '')
     {
-      $('#error_from_date').text('From Date is Required');
+      $('#error_from_date').text('La date de debut est requise');
       error++;
     }
     else
@@ -184,7 +184,7 @@ $(document).ready(function(){
 
     if(to_date == '')
     {
-      $('#error_to_date').text("To Date is Required");
+      $('#error_to_date').text("La date de fin est requise");
       error++;
     }
     else
@@ -214,7 +214,7 @@ $(document).ready(function(){
     var error = 0;
     if(grade_id == '')
     {
-      $('#error_chart_grade_id').text('Grade is Required');
+      $('#error_chart_grade_id').text('La classe est requise');
       error++;
     }
     else
@@ -223,7 +223,7 @@ $(document).ready(function(){
     }
     if(attendance_date == '')
     {
-      $('#error_attendance_date').text('Date is Required');
+      $('#error_attendance_date').text('La date est requise');
       $error++;
     }
     else
