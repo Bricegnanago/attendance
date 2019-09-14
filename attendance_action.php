@@ -2,14 +2,14 @@
 
 //attendance_action.php
 
-include('admin/database_connection.php');
+include('admin/database_connection.php'); //connexion à la BD
 
 session_start();
 
 if(isset($_POST["action"]))
 {
 	if($_POST["action"] == "fetch")
-	{
+	{ //jointure de tables ( tbl_attendance - tbl_student - tbl_grade )
 		$query = "
 		SELECT * FROM tbl_attendance 
 		INNER JOIN tbl_student 
@@ -90,7 +90,7 @@ if(isset($_POST["action"]))
 		$error = 0;
 		if(empty($_POST["attendance_date"]))
 		{
-			$error_attendance_date = 'Attendance Date is required';
+			$error_attendance_date = 'La date de présence est requise';
 			$error++;
 		}
 		else
@@ -119,7 +119,7 @@ if(isset($_POST["action"]))
 			{
 				$output = array(
 					'error'					=>	true,
-					'error_attendance_date'	=>	'Attendance Data Already Exists on this date'
+					'error_attendance_date'	=>	'Les données de présence existent déjà à cette date'
 				);
 			}
 			else
@@ -142,7 +142,7 @@ if(isset($_POST["action"]))
 					$statement->execute($data);
 				}
 				$output = array(
-					'success'		=>	'Data Added Successfully',
+					'success'		=>	'Donnée ajoutées avec succès',
 				);
 			}
 		}
@@ -207,7 +207,7 @@ if(isset($_POST["action"]))
 			"recordsFiltered"	=>	get_total_records($connect, 'tbl_student'),
 			"data"				=>	$data
 		);
-		echo json_encode($output);
+		echo json_encode($output); // encode de la variable en json
 	}
 }
 
