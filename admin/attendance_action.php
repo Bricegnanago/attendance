@@ -2,14 +2,14 @@
 
 //student_action.php
 
-include('database_connection.php');
+include('database_connection.php'); // connexion à la BD
 
 session_start();
 
 if(isset($_POST["action"]))
 {
 	if($_POST["action"] == "fetch")
-	{
+	{	// Recupération des données pour le fichier attendance.php 
 		$query = "
 		SELECT * FROM tbl_attendance 
 		INNER JOIN tbl_student 
@@ -48,10 +48,10 @@ if(isset($_POST["action"]))
 		}
 
 		$statement = $connect->prepare($query);
-		$statement->execute();
-		$result = $statement->fetchAll();
+		$statement->execute(); //Preparation de la requete et exécution
+		$result = $statement->fetchAll(); //recupération des données
 		$data = array();
-		$filtered_rows = $statement->rowCount();
+		$filtered_rows = $statement->rowCount(); // On compte la taille du tableau
 		foreach($result as $row)
 		{
 			$sub_array = array();
@@ -83,7 +83,7 @@ if(isset($_POST["action"]))
 	}
 
 	if($_POST["action"] == "index_fetch")
-	{
+	{ // Recupération des données pour le fichier index.php
 		$query = "
 		SELECT * FROM tbl_student 
 		LEFT JOIN tbl_attendance 
@@ -93,6 +93,7 @@ if(isset($_POST["action"]))
 		INNER JOIN tbl_teacher 
 		ON tbl_teacher.teacher_grade_id = tbl_grade.grade_id  
 		";
+		
 		if(isset($_POST["search"]["value"]))
 		{
 			$query .= '
@@ -130,7 +131,7 @@ if(isset($_POST["action"]))
 			$sub_array[] = $row["grade_name"];
 			$sub_array[] = $row["teacher_name"];
 			$sub_array[] = get_attendance_percentage($connect, $row["student_id"]);
-			$sub_array[] = '<button type="button" name="report_button" data-student_id="'.$row["student_id"].'" class="btn btn-info btn-sm report_button">Report</button>&nbsp;&nbsp;&nbsp;<button type="button" name="chart_button" data-student_id="'.$row["student_id"].'" class="btn btn-danger btn-sm report_button">Chart</button>
+			$sub_array[] = '<button type="button" name="report_button" data-student_id="'.$row["student_id"].'" class="btn btn-info btn-sm report_button">Rapport</button>&nbsp;&nbsp;&nbsp;<button type="button" name="chart_button" data-student_id="'.$row["student_id"].'" class="btn btn-danger btn-sm report_button">Graphique</button>
 			';
 			$data[] = $sub_array;
 		}
