@@ -10,7 +10,7 @@ include('header.php');
   <div class="card">
   	<div class="card-header">
       <div class="row">
-        <div class="col-md-9">Overall Student Attendance Status</div>
+        <div class="col-md-9">Statut de présence globale des étudiants</div>
         <div class="col-md-3" align="right">
           
         </div>
@@ -22,15 +22,15 @@ include('header.php');
 			  <thead>
 			    <tr>
 
-			      <th>Student Name</th> //Nom Complet
-			      <th>Roll Number</th> //a supprimer
-			      <th>Grade</th> // Niveau de classe
-			      <th>Attendance Percentage</th> // Statistique de presence
-			      <th>Report</th> // Etat
+			      <th>Nom Complet</th>
+			      <th>Roll Number</th>
+			      <th>Niveau de classe</th>
+			      <th>Statistique de presence</th>
+			      <th>Rapport</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-				//Ici sera appelé le l'information depuis la base de données transmit par ajax
+				<!-- Ici sera appelé le l'information depuis la base de données transmit par ajax -->
 			  </tbody>
 			</table>
  		</div>
@@ -51,7 +51,7 @@ include('header.php');
     }
 </style>
 
-//debut modal de creation de reporting
+<!-- debut modal de creation de reporting -->
 <div class="modal" id="formModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -66,11 +66,11 @@ include('header.php');
       <div class="modal-body">
         <div class="form-group">
           <div class="input-daterange">
-		//Input date de debut!
+		<!-- //Input date de debut! -->
             <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date" readonly />
             <span id="error_from_date" class="text-danger"></span>
             <br />
-		//Input date de fin!
+		<!-- //Input date de fin! -->
             <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date" readonly />
             <span id="error_to_date" class="text-danger"></span>
           </div>
@@ -78,9 +78,9 @@ include('header.php');
       </div>
       <!-- Modal footer -->
       <div class="modal-footer">
-	//On attribut une valeur au champ quand on clique sur un bouton report du tableau
+	<!-- //On attribut une valeur au champ quand on clique sur un bouton report du tableau -->
         <input type="hidden" name="student_id" id="student_id" /> 
-	//Il crée un report
+	<!-- //Il crée un report -->
         <button type="button" name="create_report" id="create_report" class="btn btn-success btn-sm">Create Report</button>
         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
       </div>
@@ -88,7 +88,7 @@ include('header.php');
 
     </div>
   </div>
-	//fin modal de creation de reporting
+	<!-- //fin modal de creation de reporting -->
 </div>
 
 

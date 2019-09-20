@@ -10,9 +10,9 @@ include('header.php');
   <div class="card">
   	<div class="card-header">
       <div class="row">
-        <div class="col-md-9">Grade List</div>
+        <div class="col-md-9">Liste de classe</div>
         <div class="col-md-3" align="right">
-          <button type="button" id="add_button" class="btn btn-info btn-sm">Add</button>
+          <button type="button" id="Ajouter_button" class="btn btn-info btn-sm">Ajouter</button>
         </div>
       </div>
     </div>
@@ -22,9 +22,9 @@ include('header.php');
         <table class="table table-striped table-bordered" id="grade_table">
           <thead>
             <tr>
-              <th>Grade Name</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Classe</th>
+              <th>Editer</th>
+              <th>Supprimer</th>
             </tr>
           </thead>
           <tbody>
@@ -54,7 +54,7 @@ include('header.php');
         <div class="modal-body">
           <div class="form-group">
             <div class="row">
-              <label class="col-md-4 text-right">Grade Name <span class="text-danger">*</span></label>
+              <label class="col-md-4 text-right">Classe <span class="text-danger">*</span></label>
               <div class="col-md-8">
                 <input type="text" name="grade_name" id="grade_name" class="form-control" />
                 <span id="error_grade_name" class="text-danger"></span>
@@ -66,10 +66,10 @@ include('header.php');
         <!-- Modal footer -->
         <div class="modal-footer">
           <input type="hidden" name="grade_id" id="grade_id" />
-          <input type="hidden" name="action" id="action" value="Add" />
+          <input type="hidden" name="action" id="action" value="Ajouter" />
 
-          <input type="submit" name="button_action" id="button_action" class="btn btn-success btn-sm" value="Add" />
-          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+          <input type="submit" name="button_action" id="button_action" class="btn btn-success btn-sm" value="Ajouter" />
+          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Fermer</button>
         </div>
       </div>
     </form>
@@ -82,19 +82,19 @@ include('header.php');
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Delete Confirmation</h4>
+        <h4 class="modal-title">Supprimer la confirmation</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-        <h3 align="center">Are you sure you want to remove this?</h3>
+        <h3 align="center">Êtes-vous sûr de vouloir supprimer ceci?</h3>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
         <button type="button" name="ok_button" id="ok_button" class="btn btn-primary btn-sm">OK</button>
-        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Fermer</button>
       </div>
 
     </div>
@@ -123,10 +123,10 @@ $(document).ready(function(){
     ],
   });
 
-  $('#add_button').click(function(){
-    $('#modal_title').text('Add Grade');
-    $('#button_action').val('Add');
-    $('#action').val('Add');
+  $('#Ajouter_button').click(function(){
+    $('#modal_title').text('Ajouter un Classe');
+    $('#button_action').val('Ajouter');
+    $('#action').val('Ajouter');
     $('#formModal').modal('show');
     clear_field();
   });
@@ -189,9 +189,9 @@ $(document).ready(function(){
       {
         $('#grade_name').val(data.grade_name);
         $('#grade_id').val(data.grade_id);
-        $('#modal_title').text('Edit Grade');
-        $('#button_action').val('Edit');
-        $('#action').val('Edit');
+        $('#modal_title').text('Editer la note');
+        $('#button_action').val('Editer');
+        $('#action').val('Editer');
         $('#formModal').modal('show');
       }
     })

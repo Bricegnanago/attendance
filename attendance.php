@@ -10,10 +10,10 @@ include('header.php');
   <div class="card">
   	<div class="card-header">
       <div class="row">
-        <div class="col-md-9">Attendance List</div>
+        <div class="col-md-9">Liste de Presence</div>
         <div class="col-md-3" align="right">
-          <button type="button" id="report_button" class="btn btn-danger btn-sm">Report</button>
-          <button type="button" id="add_button" class="btn btn-info btn-sm">Add</button>
+          <button type="button" id="report_button" class="btn btn-danger btn-sm">Rapport</button>
+          <button type="button" id="add_button" class="btn btn-info btn-sm">Ajouter</button>
         </div>
       </div>
     </div>
@@ -23,11 +23,11 @@ include('header.php');
         <table class="table table-striped table-bordered" id="attendance_table">
           <thead>
             <tr>
-              <th>Student Name</th>
+              <th>Nom Etudiant</th>
               <th>Roll Number</th>
-              <th>Grade</th>
-              <th>Attendance Status</th>
-              <th>Attendance Date</th>
+              <th>Classe</th>
+              <th>Statut de présence</th>
+              <th>Date de présence</th>
             </tr>
           </thead>
           <tbody>
@@ -84,7 +84,7 @@ $result = $statement->fetchAll();
           ?>
           <div class="form-group">
             <div class="row">
-              <label class="col-md-4 text-right">Grade <span class="text-danger">*</span></label>
+              <label class="col-md-4 text-right">Classe <span class="text-danger">*</span></label>
               <div class="col-md-8">
                 <?php
                 echo '<label>'.$row["grade_name"].'</label>';
@@ -107,7 +107,7 @@ $result = $statement->fetchAll();
                 <thead>
                   <tr>
                     <th>Roll No.</th>
-                    <th>Student Name</th>
+                    <th>Nom et Prenom</th>
                     <th>Present</th>
                     <th>Absent</th>
                   </tr>
@@ -149,9 +149,9 @@ $result = $statement->fetchAll();
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <input type="hidden" name="action" id="action" value="Add" />
-          <input type="submit" name="button_action" id="button_action" class="btn btn-success btn-sm" value="Add" />
-          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+          <input type="hidden" name="action" id="action" value="Ajouter" />
+          <input type="submit" name="button_action" id="button_action" class="btn btn-success btn-sm" value="Ajouter" />
+          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Fermer</button>
         </div>
 
       </div>
@@ -165,7 +165,7 @@ $result = $statement->fetchAll();
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Make Report</h4>
+        <h4 class="modal-title">Faire un rapport</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -173,18 +173,18 @@ $result = $statement->fetchAll();
       <div class="modal-body">
         <div class="form-group">
           <div class="input-daterange">
-            <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date" readonly />
+            <input type="text" name="from_date" id="from_date" class="form-control" placeholder="Partir de la date" readonly />
             <span id="error_from_date" class="text-danger"></span>
             <br />
-            <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date" readonly />
+            <input type="text" name="to_date" id="to_date" class="form-control" placeholder="À ce jour" readonly />
             <span id="error_to_date" class="text-danger"></span>
           </div>
         </div>
       </div>
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" name="create_report" id="create_report" class="btn btn-success btn-sm">Create Report</button>
-        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        <button type="button" name="create_report" id="create_report" class="btn btn-success btn-sm">Créer un rapport</button>
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Fermer</button>
       </div>
 
     </div>
@@ -206,7 +206,7 @@ $(document).ready(function(){
   });
 
   $('#attendance_date').datepicker({
-    format:'yyyy-mm-dd',
+    format:'dd-mm-yyyy',
     autoclose:true,
     container: '#formModal modal-body'
   });
@@ -218,7 +218,7 @@ $(document).ready(function(){
   }
 
   $('#add_button').click(function(){
-    $('#modal_title').text("Add Attendance");
+    $('#modal_title').text("Ajouter une présence");
     $('#formModal').modal('show');
     clear_field();
   });
@@ -262,7 +262,7 @@ $(document).ready(function(){
 
   $('.input-daterange').datepicker({
     todayBtn:"linked",
-    format:"yyyy-mm-dd",
+    format:"dd-mm-yyyy",
     autoclose:true,
     container: '#formModal modal-body'
   });
@@ -277,7 +277,7 @@ $(document).ready(function(){
     var error = 0;
     if(from_date == '')
     {
-      $('#error_from_date').text('From Date is Required');
+      $('#error_from_date').text('La date de début est requise');
       error++;
     }
     else
@@ -287,7 +287,7 @@ $(document).ready(function(){
 
     if(to_date == '')
     {
-      $('#error_to_date').text("To Date is Required");
+      $('#error_to_date').text("La date de fin est requise");
       error++;
     }
     else

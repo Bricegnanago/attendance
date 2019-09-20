@@ -8,9 +8,9 @@ include('header.php');
   <div class="card">
   	<div class="card-header">
       <div class="row">
-        <div class="col-md-9">Teacher List</div>
+        <div class="col-md-9">Liste de professeurs</div>
         <div class="col-md-3" align="right">
-          <button type="button" id="add_button" class="btn btn-info btn-sm">Add</button>
+          <button type="button" id="add_button" class="btn btn-info btn-sm">Ajouter</button>
         </div>
       </div>
     </div>
@@ -21,12 +21,12 @@ include('header.php');
   				<thead>
   					<tr>
   						<th>Image</th>
-  						<th>Teacher Name</th>
-  						<th>Email Address</th>
-              <th>Grade</th>
-  						<th>View</th>
-  						<th>Edit</th>
-  						<th>Delete</th>
+  						<th>Nom professeur</th>
+  						<th>Addresse Email</th>
+              <th>Classe</th>
+  						<th>Voir</th>
+  						<th>Editer</th>
+  						<th>Supprimer</th>
   					</tr>
   				</thead>
   				<tbody>
@@ -65,7 +65,7 @@ include('header.php');
         <div class="modal-body">
           <div class="form-group">
             <div class="row">
-              <label class="col-md-4 text-right">Teacher Name <span class="text-danger">*</span></label>
+              <label class="col-md-4 text-right">Nom de l'enseignant<span class="text-danger">*</span></label>
               <div class="col-md-8">
                 <input type="text" name="teacher_name" id="teacher_name" class="form-control" />
                 <span id="error_teacher_name" class="text-danger"></span>
@@ -74,7 +74,7 @@ include('header.php');
           </div>
           <div class="form-group">
             <div class="row">
-              <label class="col-md-4 text-right">Address <span class="text-danger">*</span></label>
+              <label class="col-md-4 text-right">Addresse <span class="text-danger">*</span></label>
               <div class="col-md-8">
                 <textarea name="teacher_address" id="teacher_address" class="form-control"></textarea>
                 <span id="error_teacher_address" class="text-danger"></span>
@@ -83,7 +83,7 @@ include('header.php');
           </div>
           <div class="form-group">
             <div class="row">
-              <label class="col-md-4 text-right">Email Address <span class="text-danger">*</span></label>
+              <label class="col-md-4 text-right">Addresse Email<span class="text-danger">*</span></label>
               <div class="col-md-8">
                 <input type="text" name="teacher_emailid" id="teacher_emailid" class="form-control" />
                 <span id="error_teacher_emailid" class="text-danger"></span>
@@ -92,7 +92,7 @@ include('header.php');
           </div>
           <div class="form-group">
             <div class="row">
-              <label class="col-md-4 text-right">Password <span class="text-danger">*</span></label>
+              <label class="col-md-4 text-right">Mot de passe <span class="text-danger">*</span></label>
               <div class="col-md-8">
                 <input type="password" name="teacher_password" id="teacher_password" class="form-control" />
                 <span id="error_teacher_password" class="text-danger"></span>
@@ -110,13 +110,13 @@ include('header.php');
           </div>
           <div class="form-group">
             <div class="row">
-              <label class="col-md-4 text-right">Grade <span class="text-danger">*</span></label>
+              <label class="col-md-4 text-right">Classe <span class="text-danger">*</span></label>
               <div class="col-md-8">
-                <select name="teacher_grade_id" id="teacher_grade_id" class="form-control">
-                  <option value="">Select Grade</option>
-                  <?php
-                  echo load_grade_list($connect);
-                  ?>
+                <select name="teacher_grade_id" multiple id="teacher_grade_id" class="form-control">
+                    <!-- <option value="">Cocher les classes</option> -->
+                    <?php
+                    echo load_grade_list($connect);
+                    ?>                  
                 </select>
                 <span id="error_teacher_grade_id" class="text-danger"></span>
               </div>
@@ -124,7 +124,7 @@ include('header.php');
           </div>
           <div class="form-group">
             <div class="row">
-              <label class="col-md-4 text-right">Date of Joining <span class="text-danger">*</span></label>
+              <label class="col-md-4 text-right">Date d'adhésion <span class="text-danger">*</span></label>
               <div class="col-md-8">
                 <input type="text" name="teacher_doj" id="teacher_doj" class="form-control" />
                 <span id="error_teacher_doj" class="text-danger"></span>
@@ -136,7 +136,7 @@ include('header.php');
               <label class="col-md-4 text-right">Image <span class="text-danger">*</span></label>
               <div class="col-md-8">
                 <input type="file" name="teacher_image" id="teacher_image" />
-                <span class="text-muted">Only .jpg and .png allowed</span><br />
+                <span class="text-muted">Seuls les formats .jpg et .png sont autorisés</span><br />
                 <span id="error_teacher_image" class="text-danger"></span>
               </div>
             </div>
@@ -147,9 +147,9 @@ include('header.php');
         <div class="modal-footer">
           <input type="hidden" name="hidden_teacher_image" id="hidden_teacher_image" value="" />
           <input type="hidden" name="teacher_id" id="teacher_id" />
-          <input type="hidden" name="action" id="action" value="Add" />
-          <input type="submit" name="button_action" id="button_action" class="btn btn-success btn-sm" value="Add" />
-          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+          <input type="hidden" name="action" id="action" value="Ajouter" />
+          <input type="submit" name="button_action" id="button_action" class="btn btn-success btn-sm" value="Ajouter" />
+          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Fermer</button>
         </div>
 
       </div>
@@ -181,6 +181,7 @@ include('header.php');
   </div>
 </div>
 
+<!-- Supprimer un professeur -->
 <div class="modal" id="deleteModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -209,6 +210,12 @@ include('header.php');
 
 <script>
 $(document).ready(function(){
+  // $('#teacher_grade_id').multiselect({
+  //   nonSelectedText: 'Select Framework',
+  //   enableFiltering: true,
+  //   enableCaseInsensitiveFiltering: true,
+  //   buttonWidth:'200px'
+  // });
 	var dataTable = $('#teacher_table').DataTable({
 		"processing":true,
 		"serverSide":true,
@@ -246,9 +253,9 @@ $(document).ready(function(){
   }
 
   $('#add_button').click(function(){
-    $('#modal_title').text("Add Teacher");
-    $('#button_action').val('Add');
-    $('#action').val('Add');
+    $('#modal_title').text("Ajouter un enseignant");
+    $('#button_action').val('Ajouter');
+    $('#action').val('Ajouter');
     $('#formModal').modal('show');
     clear_field();
   });
@@ -382,9 +389,9 @@ $(document).ready(function(){
   			$('#error_teacher_image').html('<img src="teacher_image/'+data.teacher_image+'" class="img-thumbnail" width="50" />');
   			$('#hidden_teacher_image').val(data.teacher_image);
   			$('#teacher_id').val(data.teacher_id);
-  			$('#modal_title').text('Edit Teacher');
-  			$('#button_action').val('Edit');
-  			$('#action').val('Edit');
+  			$('#modal_title').text('Editer un Enseignant');
+  			$('#button_action').val('Editer');
+  			$('#action').val('Editer');
   			$('#formModal').modal('show');
   		}
   	});

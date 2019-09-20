@@ -17,8 +17,10 @@ if(!isset($_SESSION["teacher_id"]))
   <title>Student Attendance System in PHP using Ajax</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
+  <script src="js/bootstrap3-typeahead.min.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

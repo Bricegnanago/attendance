@@ -4,7 +4,7 @@
 
 $connect = new PDO("mysql:host=localhost;dbname=attendance","root","");
 
-$base_url = "http://localhost/student-attendance-system-in-php-using-ajax/";
+$base_url = "http://localhost/attendance/";
 
 function get_total_records($connect, $table_name)
 {
@@ -25,6 +25,7 @@ function load_grade_list($connect)
 	$output = '';
 	foreach($result as $row)
 	{
+		
 		$output .= '<option value="'.$row["grade_id"].'">'.$row["grade_name"].'</option>';
 	}
 	return $output;
@@ -56,6 +57,15 @@ function get_attendance_percentage($connect, $student_id)
 		}
 	}
 }
+// function get_grade_of_teacher($connect, $teacher_id, $grades)
+// {
+// 	$grades = explode(",", $grades);
+// 	$query = "
+// 	select tbl_grade.grade_name from tbl_grade inner join
+// 	tbl_teacher on tbl_grade.grade_id = tbl_teacher.teacher_grade_id
+// 	where teacher_id = '$teacher_id' and teacher_id in 
+// 	";
+// }
 
 function Get_student_name($connect, $student_id)
 {

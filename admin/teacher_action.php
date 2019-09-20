@@ -15,6 +15,7 @@ if(isset($_POST["action"]))
 		INNER JOIN tbl_grade 
 		ON tbl_grade.grade_id = tbl_teacher.teacher_grade_id 
 		";
+		// selectionne tout les champs des tables tbl_grade et tbl_teacher ou les classes sont identiques
 		if(isset($_POST["search"]["value"]))
 		{
 			$query .= '
@@ -52,9 +53,9 @@ if(isset($_POST["action"]))
 			$sub_array[] = $row["teacher_name"];
 			$sub_array[] = $row["teacher_emailid"];
 			$sub_array[] = $row["grade_name"];
-			$sub_array[] = '<button type="button" name="view_teacher" class="btn btn-info btn-sm view_teacher" id="'.$row["teacher_id"].'">View</button>';
-			$sub_array[] = '<button type="button" name="edit_teacher" class="btn btn-primary btn-sm edit_teacher" id="'.$row["teacher_id"].'">Edit</button>';
-			$sub_array[] = '<button type="button" name="delete_teacher" class="btn btn-danger btn-sm delete_teacher" id="'.$row["teacher_id"].'">Delete</button>';
+			$sub_array[] = '<button type="button" name="view_teacher" class="btn btn-info btn-sm view_teacher" id="'.$row["teacher_id"].'">Voir</button>';
+			$sub_array[] = '<button type="button" name="edit_teacher" class="btn btn-primary btn-sm edit_teacher" id="'.$row["teacher_id"].'">Editer</button>';
+			$sub_array[] = '<button type="button" name="delete_teacher" class="btn btn-danger btn-sm delete_teacher" id="'.$row["teacher_id"].'">Supprimer</button>';
 			$data[] = $sub_array;
 		}
 		$output = array(
@@ -66,7 +67,7 @@ if(isset($_POST["action"]))
 		echo json_encode($output);
 	}
 
-	if($_POST["action"] == 'Add' || $_POST["action"] == "Edit")
+	if($_POST["action"] == 'Ajouter' || $_POST["action"] == "Editer")
 	{
 		$teacher_name = '';
 		$teacher_address = '';
@@ -96,7 +97,7 @@ if(isset($_POST["action"]))
 			$allowed_extension = array('jpg','png');
 			if(!in_array($extension, $allowed_extension))
 			{
-				$error_teacher_image = 'Invalid Image Format';
+				$error_teacher_image = "Format d'image invalid";
 				$error++;
 			}
 			else
@@ -110,13 +111,13 @@ if(isset($_POST["action"]))
 		{
 			if($teacher_image == '')
 			{
-				$error_teacher_image = 'Image is required';
+				$error_teacher_image = 'Une image est requise';
 				$error++;
 			}
 		}
 		if(empty($_POST["teacher_name"]))
 		{
-			$error_teacher_name = 'Teacher Name is required';
+			$error_teacher_name = "Le nom de l'enseignant est requis";
 			$error++;
 		}
 		else
@@ -125,25 +126,25 @@ if(isset($_POST["action"]))
 		}
 		if(empty($_POST["teacher_address"]))
 		{
-			$error_teacher_address = 'Teacher Address is required';
+			$error_teacher_address = "Adresse de l'enseignant requise";
 			$error++;
 		}
 		else
 		{
 			$teacher_address = $_POST["teacher_address"];
 		}
-		if($_POST["action"] == "Add")
+		if($_POST["action"] == "Ajouter")
 		{
 			if(empty($_POST["teacher_emailid"]))
 			{
-				$error_teacher_emailid = 'Email Address is required';
+				$error_teacher_emailid = 'Adresse e-mail est nécessaire';
 				$error++;
 			}
 			else
 			{
 				if(!filter_var($_POST["teacher_emailid"], FILTER_VALIDATE_EMAIL))
 				{
-					$error_teacher_emailid = 'Invalid email format';
+					$error_teacher_emailid = "Format d'email invalide";
 					$error++;
 				}
 				else
@@ -153,7 +154,7 @@ if(isset($_POST["action"]))
 			}
 			if(empty($_POST["teacher_password"]))
 			{
-				$error_teacher_password = "Password is required";
+				$error_teacher_password = "Mot de passe requis";
 				$error++;
 			}
 			else
@@ -163,16 +164,22 @@ if(isset($_POST["action"]))
 		}
 		if(empty($_POST["teacher_grade_id"]))
 		{
-			$error_teacher_grade_id = "Grade is required";
+			$error_teacher_grade_id = "La classe est obligatoire";
 			$error++;
 		}
 		else
-		{
+		{			
+			// foreach($_POST["teacher_grade_id"] as $row)
+			// {
+			// $teacher_grade_id .= $row . ', ';
+			// }
+			// $teacher_grade_id = substr($teacher_grade_id, 0, -2);
+			// echo $teacher_grade_id;
 			$teacher_grade_id = $_POST["teacher_grade_id"];
 		}
 		if(empty($_POST["teacher_qualification"]))
 		{
-			$error_teacher_qualification = 'Qualification Field is required';
+			$error_teacher_qualification = 'Le champ de qualification est obligatoire';
 			$error++;
 		}
 		else
@@ -181,7 +188,7 @@ if(isset($_POST["action"]))
 		}
 		if(empty($_POST["teacher_doj"]))
 		{
-			$error_teacher_doj = 'Date of Join Field is required';
+			$error_teacher_doj = 'Date de participation obligatoire';
 			$error++;
 		}
 		else
@@ -204,7 +211,7 @@ if(isset($_POST["action"]))
 		}
 		else
 		{
-			if($_POST["action"] == 'Add')
+			if($_POST["action"] == 'Ajouter')
 			{
 				$data = array(
 					':teacher_name'			=>	$teacher_name,
@@ -230,19 +237,19 @@ if(isset($_POST["action"]))
 					if($statement->rowCount() > 0)
 					{
 						$output = array(
-							'success'		=>	'Data Added Successfully',
+							'success'		=>	'Données ajoutées avec succès',
 						);
 					}
 					else
 					{
 						$output = array(
 							'error'					=>	true,
-							'error_teacher_emailid'	=>	'Email Already Exists'
+							'error_teacher_emailid'	=>	"L'email existe déjà"
 						);
 					}
 				}
 			}
-			if($_POST["action"] == "Edit")
+			if($_POST["action"] == "Editer")
 			{
 				$data = array(
 					':teacher_name'		=>	$teacher_name,
@@ -267,7 +274,7 @@ if(isset($_POST["action"]))
 				if($statement->execute($data))
 				{
 					$output = array(
-						'success'		=>	'Data Edited Successfully',
+						'success'		=>	'Données éditées avec succès',
 					);
 				}
 			}
@@ -300,15 +307,15 @@ if(isset($_POST["action"]))
 				<div class="col-md-9">
 					<table class="table">
 						<tr>
-							<th>Name</th>
+							<th>Nom</th>
 							<td>'.$row["teacher_name"].'</td>
 						</tr>
 						<tr>
-							<th>Address</th>
+							<th>Addresse</th>
 							<td>'.$row["teacher_address"].'</td>
 						</tr>
 						<tr>
-							<th>Email Address</th>
+							<th>Addresse Email</th>
 							<td>'.$row["teacher_emailid"].'</td>
 						</tr>
 						<tr>
@@ -316,11 +323,11 @@ if(isset($_POST["action"]))
 							<td>'.$row["teacher_qualification"].'</td>
 						</tr>
 						<tr>
-							<th>Date of Joining</th>
+							<th>Date d\'Adhésion</th>
 							<td>'.$row["teacher_doj"].'</td>
 						</tr>
 						<tr>
-							<th>Grade</th>
+							<th>Classe</th>
 							<td>'.$row["grade_name"].'</td>
 						</tr>
 					</table>
@@ -364,7 +371,7 @@ if(isset($_POST["action"]))
 		$statement = $connect->prepare($query);
 		if($statement->execute())
 		{
-			echo 'Data Deleted Successfully';
+			echo 'Données supprimées avec succès';
 		}
 	}
 	

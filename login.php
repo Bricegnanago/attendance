@@ -17,7 +17,7 @@ if(isset($_SESSION["teacher_id"]))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Student Attendance System in PHP using Ajax</title>
+  <title>Zoom Student</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -28,9 +28,8 @@ if(isset($_SESSION["teacher_id"]))
 <body>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>Student Attendance System</h1>
+  <h1>Système de presence étudiant</h1>
 </div>
-
 
 <div class="container">
   <div class="row">
@@ -39,16 +38,16 @@ if(isset($_SESSION["teacher_id"]))
     </div>
     <div class="col-md-4" style="margin-top:20px;">
       <div class="card">
-        <div class="card-header">Teacher Login</div>
+        <div class="card-header">Connexion enseignant</div>
         <div class="card-body">
           <form method="post" id="teacher_login_form">
             <div class="form-group">
-              <label>Enter Email Address</label>
+              <label>Adresse Email</label>
               <input type="text" name="teacher_emailid" id="teacher_emailid" class="form-control" />
               <span id="error_teacher_emailid" class="text-danger"></span>
             </div>
             <div class="form-group">
-              <label>Enter Password</label>
+              <label>Mot de Passe</label>
               <input type="password" name="teacher_password" id="teacher_password" class="form-control" />
               <span id="error_teacher_password" class="text-danger"></span>
             </div>

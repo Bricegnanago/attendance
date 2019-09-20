@@ -21,12 +21,12 @@ include('header.php');
         <table class="table table-striped table-bordered" id="student_table">
           <thead>
             <tr>
-              <th>Nom Etudiant</th> // 
-              <th>Roll Number</th> //à supprimer
-              <th>Classe</th> // 
+              <th>Nom Etudiant</th>
+              <th>Roll Number</th> <!--à supprimer-->
+              <th>Classe</th> 
               <th>Professeur</th>
               <th>Pourcentage de Presence</th>
-              <th>Report</th>
+              <th>Rapport</th>
             </tr>
           </thead>
           <tbody>
@@ -106,10 +106,10 @@ $(document).ready(function(){
 
    $('.input-daterange').datepicker({
     todayBtn:"linked",
-    format:'yyyy-mm-dd',
+    format:'dd-mm-yyyy',
     autoclose:true,
     container: '#formModal modal-body'
-   });
+   })
 
    $(document).on('click', '.report_button', function(){
     var student_id = $(this).data('student_id');

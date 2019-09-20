@@ -23,7 +23,7 @@ include('header.php');
 			  <thead>
 			    <tr>
 			      <th>Nom Etudiant</th>
-			      <th>Roll Number</th> //à supprimer
+			      <th>Roll Number</th>
 			      <th>Classe</th>//Classe
 			      <th>Statut de présence</th>
 			      <th>Date de présence</th>
@@ -66,7 +66,7 @@ include('header.php');
       <div class="modal-body">
         <div class="form-group">
           <select name="grade_id" id="grade_id" class="form-control">
-            <option value="">Select Grade</option>
+            <option value="">Selectionner une Classe</option>
             <?php
             echo load_grade_list($connect);
             ?>
@@ -123,8 +123,8 @@ include('header.php');
       </div>
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" name="create_chart" id="create_chart" class="btn btn-success btn-sm">Create Chart</button>
-        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        <button type="button" name="create_chart" id="create_chart" class="btn btn-success btn-sm">Créer un graphique</button>
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Fermer</button>
       </div>
 
     </div>
@@ -147,7 +147,7 @@ $(document).ready(function(){
 
   $('.input-daterange').datepicker({
     todayBtn: "linked",
-    format: "yyyy-mm-dd", // dd-mm-yyyy
+    format: "dd-mm-yyyy", // dd-mm-yyyy
     autoclose: true,
     container: '#formModal modal-body'
   });

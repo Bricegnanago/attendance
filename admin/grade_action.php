@@ -39,8 +39,8 @@ if(isset($_POST["action"]))
 		{
 			$sub_array = array();
 			$sub_array[] = $row["grade_name"];
-			$sub_array[] = '<button type="button" name="edit_grade" class="btn btn-primary btn-sm edit_grade" id="'.$row["grade_id"].'">Edit</button>';
-			$sub_array[] = '<button type="button" name="delete_grade" class="btn btn-danger btn-sm delete_grade" id="'.$row["grade_id"].'">Delete</button>';
+			$sub_array[] = '<button type="button" name="edit_grade" class="btn btn-primary btn-sm edit_grade" id="'.$row["grade_id"].'">Editer</button>';
+			$sub_array[] = '<button type="button" name="delete_grade" class="btn btn-danger btn-sm delete_grade" id="'.$row["grade_id"].'">Supprimer</button>';
 			$data[] = $sub_array;
 		}
 
@@ -53,7 +53,7 @@ if(isset($_POST["action"]))
 
 		
 	}
-	if($_POST["action"] == 'Add' || $_POST["action"] == "Edit")
+	if($_POST["action"] == 'Ajouter' || $_POST["action"] == "Editer")
 	{
 		$grade_name = '';
 		$error_grade_name = '';
@@ -76,7 +76,7 @@ if(isset($_POST["action"]))
 		}
 		else
 		{
-			if($_POST["action"] == "Add")
+			if($_POST["action"] == "Ajouter")
 			{
 				$data = array(
 					':grade_name'				=>	$grade_name
@@ -95,19 +95,19 @@ if(isset($_POST["action"]))
 					if($statement->rowCount() > 0)
 					{
 						$output = array(
-							'success'		=>	'Data Added Successfully',
+							'success'		=>	'Données ajoutées avec succès',
 						);
 					}
 					else
 					{
 						$output = array(
 							'error'					=>	true,
-							'error_grade_name'		=>	'Grade Name Already Exists'
+							'error_grade_name'		=>	'Cette classe existe déjà'
 						);
 					}
 				}
 			}
-			if($_POST["action"] == "Edit")
+			if($_POST["action"] == "Editer")
 			{
 				$data = array(
 					':grade_name'			=>	$grade_name,
@@ -123,7 +123,7 @@ if(isset($_POST["action"]))
 				if($statement->execute($data))
 				{
 					$output = array(
-						'success'		=>	'Data Updated Successfully',
+						'success'		=>	'Données mise à jour avec succès',
 					);
 				}
 			}
@@ -156,7 +156,7 @@ if(isset($_POST["action"]))
 		$statement = $connect->prepare($query);
 		if($statement->execute())
 		{
-			echo 'Data Deleted Successfully';
+			echo 'Données supprimées avec succès';
 		}
 	}
 

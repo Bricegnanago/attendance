@@ -83,7 +83,7 @@ if(isset($_POST["action"]))
 		echo json_encode($output);
 	}
 
-	if($_POST["action"] == "Add")
+	if($_POST["action"] == "Ajouter")
 	{
 		$attendance_date = '';
 		$error_attendance_date = '';
